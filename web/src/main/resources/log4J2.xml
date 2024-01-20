@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <File name="JSONLogfileAppender" fileName="logs/logfile.json">
+            <JSONLayout compact="true" eventEol="true"/>
+            <BurstFilter level="INFO" rate="2" maxBurst="10"/>
+        </File>
+        <Async name="AsyncAppender" bufferSize="10">
+            <AppenderRef ref="JSONLogfileAppender"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Logger name="by.academy.web" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="AsyncAppender" level="warn"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
