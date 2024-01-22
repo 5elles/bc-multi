@@ -7,6 +7,7 @@ import by.academy.dto.UserFullDataDTO;
 import by.academy.entity.User;
 import by.academy.mapper.UserFullDataMapper;
 import by.academy.mapper.UserListMapper;
+import by.academy.mapper.UserMapper;
 import by.academy.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
